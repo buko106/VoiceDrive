@@ -78,6 +78,7 @@ def fft_and_filter( data ):
 
 data = np.zeros(CHUNK*SIZE)
 LOW_FREQ = 375.
+SHIFT = 4
 
 while input_stream.is_active():
     input = input_stream.read(CHUNK)
@@ -89,9 +90,9 @@ while input_stream.is_active():
     v0 = fft_and_filter(prev_data)
     v1 = fft_and_filter(data)
 
-    v_neg = np.dot( v0[2:-2], v1[:-4] )
-    v_pos = np.dot( v0[2:-2], v1[4:] )
+    v_neg = np.dot( v0[SHIFT:-SHIFT], v1[:-2*SHIFT] )
+    v_pos = np.dot( v0[SHIFT:-SHIFT], v1[2*SHIFT:] )
 
     val = v_pos - v_neg
-    if np.abs(val) > 200:
+    if np.abs(val) > 50:
         print(val)
