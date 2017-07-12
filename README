@@ -1,0 +1,7 @@
+
+Requiremnts:
+        python 3.x
+        numpy pyaudio
+
+Usage:
+        run 'python main.py' or 'python main.py --help'
