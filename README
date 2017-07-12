@@ -3,5 +3,11 @@ Requiremnts:
         python 3.x
         numpy pyaudio
 
+
 Usage:
         run 'python main.py' or 'python main.py --help'
+
+
+Reference:
+        Voice as Sound: Using Non-verbal Voice Input for Interactive Control
+        http://cs.brown.edu/~jfh/papers/Igarashi-VAS-2001/main.htm
