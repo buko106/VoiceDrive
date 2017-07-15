@@ -1,7 +1,7 @@
 
 Requiremnts:
         python 3.x
-        numpy pyaudio
+        numpy pyaudio pygame
 
 
 Usage:
