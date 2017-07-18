@@ -41,6 +41,7 @@ class Car:
         self.flag = 0
         self.arrow = np.array([(20,0),(20,-150),(40,-150),(0,-200),(-40,-150),(-20,-150),(-20,0)],dtype=np.float)
         self.acc_max = 25
+        self.shiftgear_count = 0
 
     # TCP Util
     def connect(self,host,port):
@@ -117,16 +118,25 @@ class Car:
                 if event.key == pygame.K_SPACE:
                     self.shiftgear( not self.gear )
                     print("gear =",self.gear)
+                    self.shiftgear_count = 2
                     some_key_pressed = True
                 if event.key == pygame.K_ESCAPE:
                     self.start()
                     print("start",self.gear)
                     some_key_pressed = True
                     
+        if self.shiftgear_count > 0:
+            self.shiftgear_count -= 1
+            self.shiftgear( self.gear )
+            print("gear =",self.gear)
+            some_key_pressed = True
+            
         if not some_key_pressed:
             if self.flag%3 == 0:
                 if d == 0:
                     self.wheel(w)
+                else:
+                    self.wheel(50)
             elif self.flag%3 == 1:
                 self.accelerator(a)
             elif self.flag%3 == 2:
